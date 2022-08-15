@@ -132,7 +132,7 @@ export default function LandingPage() {
 
             <p>
               <White>Dark Forest on AltLayer: Community Round 1</White><br/>
-              <Text>Date:</Text> <White>Aug 26th 19:00 - Aug 28th 19:00 (UTC +8), 2022</White>
+              <Text>Date:</Text> <White>Sep 2nd 19:00 - Sep 4th 19:00 (UTC +8), 2022</White>
             </p>
 
             <Spacer height={16} />
