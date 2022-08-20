@@ -7,7 +7,7 @@ import { Btn } from '../Components/Btn';
 import { EmSpacer, Link, Spacer, Title } from '../Components/CoreUI';
 import { EmailCTA, EmailCTAMode } from '../Components/Email';
 import { Modal } from '../Components/Modal';
-import { HideSmall, Text, White, Gold } from '../Components/Text';
+import { HideSmall, Text, White, Gold, ALPurple, Txt90pc, Larger, Smaller_2 } from '../Components/Text';
 import dfstyles from '../Styles/dfstyles';
 import { LandingPageRoundArt } from '../Views/LandingPageRoundArt';
 import { LeadboardDisplay } from '../Views/Leaderboard';
@@ -49,10 +49,13 @@ const ButtonWrapper = styled.div`
     flex-direction: column;
   }
 
-  --df-button-color: ${dfstyles.colors.dfgreen};
-  --df-button-border: 1px solid ${dfstyles.colors.dfgreen};
-  --df-button-hover-background: ${dfstyles.colors.dfgreen};
-  --df-button-hover-border: 1px solid ${dfstyles.colors.dfgreen};
+  --df-button-color: ${dfstyles.colors.alpurple};
+  --df-button-background: #000;
+  --df-button-border: 1px solid ${dfstyles.colors.alpurple};
+  --df-button-hover-background: ${dfstyles.colors.alpurple};
+  --df-button-hover-border: 1px solid ${dfstyles.colors.alpurple};
+  filter: brightness(1.2);
+  font-weight: 600;
 `;
 
 export default function LandingPage() {
@@ -61,8 +64,8 @@ export default function LandingPage() {
   return (
     <>
       <PrettyOverlayGradient />
-      <HiringAltLayer />
-      <HiringDarkForest />
+      {/*<HiringAltLayer />*/}
+      {/*<HiringDarkForest />*/}
 
       <Page>
         <OnlyMobile>
@@ -130,218 +133,45 @@ export default function LandingPage() {
 
             <LandingPageRoundArt />
 
-            <p>
-              <White>Dark Forest on AltLayer: Test Round</White> (score not counted)<br/>
-              <Text>Date:</Text> <White>Aug 26th 12:00 - Sep 5th 12:00 (GMT), 2022</White>
-            </p>
-            <Spacer height={32} />
-            <p>
-              <White>Dark Forest on AltLayer: Community Round 1</White><br/>
-              <Text>Date:</Text> <White>Sep 9th 12:00 - Sep 11th 12:00 (GMT), 2022</White>
-            </p>
+            <HeroSection>
+              <TitleSection>
+                <ALPurple><Larger>Dark Forest on AltLayer<br/>Community Round 1</Larger></ALPurple><br/>
+                <Spacer height={10} />
+                <ALPurple><Smaller_2>Sep 9th 12:00 - Sep 11th 12:00 (GMT), 2022</Smaller_2></ALPurple>
+              </TitleSection>
 
-            <Spacer height={48} />
+              <Spacer height={40} />
 
-            <ButtonWrapper>
-              {/*
-                // Disallow creating custom lobby
-                <Btn size='large' onClick={() => history.push(`/lobby/${defaultAddress}`)}>
-                  Create Lobby
+              <ButtonWrapper>
+                {/*
+                  // Disallow creating custom lobby
+                  <Btn size='large' onClick={() => history.push(`/lobby/${defaultAddress}`)}>
+                    Create Lobby
+                  </Btn>
+                */}
+                <Btn size='large' onClick={() => history.push(`/play/${defaultAddress}`)}>
+                  Enter Community Round
                 </Btn>
-              */}
-              <Btn size='large' onClick={() => history.push(`/play/${defaultAddress}`)}>
-                Enter Community Round
-              </Btn>
-            </ButtonWrapper>
+              </ButtonWrapper>
+            </HeroSection>
+
           </Header>
           <EmSpacer height={3} />
-          {/*
-          Ways to get Involved
-          <EmSpacer height={1} />
-          <Involved>
-            <InvolvedItem
-              href='https://blog.zkga.me/hosting-a-dark-forest-community-round'
-              style={{
-                backgroundImage: "url('/public/get_involved/community_round.png')",
-              }}
-            ></InvolvedItem>
-            <InvolvedItem
-              href='https://github.com/darkforest-eth/plugins#adding-your-plugin'
-              style={{
-                backgroundImage: "url('/public/get_involved/write_plugin.png')",
-              }}
-            ></InvolvedItem>
-            <InvolvedItem
-              href='https://github.com/darkforest-eth/plugins#reviewer-guidelines'
-              style={{
-                backgroundImage: "url('/public/get_involved/reveiw_plugin.png')",
-              }}
-            ></InvolvedItem>
-            <InvolvedItem
-              href='https://blog.zkga.me/renderer-plugin-contest'
-              style={{
-                backgroundImage: "url('/public/get_involved/plugin_render.png')",
-              }}
-            ></InvolvedItem>
-            <InvolvedItem
-              href='https://blog.zkga.me/introducing-dark-forest-lobbies'
-              style={{
-                backgroundImage: "url('/public/get_involved/lobby.png')",
-              }}
-            ></InvolvedItem>
-          </Involved>
-          */}
-          {/*
-          <EmSpacer height={3} />
-          <HallOfFame style={{ color: dfstyles.colors.text }}>
-            <HallOfFameTitle>Space Masters</HallOfFameTitle>
-            <Spacer height={8} />
-            <table>
-              <tbody>
-                <TRow>
-                  <td>
-                    <HideSmall>v</HideSmall>0.1
-                  </td>
-                  <td>
-                    02/22/<HideSmall>20</HideSmall>20
-                  </td>
-                  <td>
-                    <a href='https://twitter.com/zoink'>Dylan Field</a>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <HideSmall>v</HideSmall>0.2
-                  </td>
-                  <td>
-                    06/24/<HideSmall>20</HideSmall>20
-                  </td>
-                  <td>Nate Foss</td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v3-rules'>
-                      <HideSmall>v</HideSmall>0.3
-                    </Link>
-                  </td>
-                  <td>
-                    08/07/<HideSmall>20</HideSmall>20
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/hideandcleanse'>@hideandcleanse</Link>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v4-recap'>
-                      <HideSmall>v</HideSmall>0.4
-                    </Link>
-                  </td>
-                  <td>
-                    10/02/<HideSmall>20</HideSmall>20
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/jacobrosenthal'>Jacob Rosenthal</Link>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v5-winners'>
-                      <HideSmall>v</HideSmall>0.5
-                    </Link>
-                  </td>
-                  <td>
-                    12/25/<HideSmall>20</HideSmall>20
-                  </td>
-                  <td>0xb05d9542...</td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v6-r1-wrapup'>
-                      <HideSmall>v</HideSmall>0.6 round 1
-                    </Link>
-                  </td>
-                  <td>
-                    05/22/<HideSmall>20</HideSmall>21
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/adietrichs'>Ansgar Dietrichs</Link>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v6-r2-wrapup'>
-                      <HideSmall>v</HideSmall>0.6 round 2
-                    </Link>
-                  </td>
-                  <td>
-                    07/07/<HideSmall>20</HideSmall>21
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/orden_gg'>@orden_gg</Link>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v6-r3-wrapup'>
-                      <HideSmall>v</HideSmall>0.6 round 3
-                    </Link>
-                  </td>
-                  <td>
-                    08/22/<HideSmall>20</HideSmall>21
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/dropswap_gg'>@dropswap_gg</Link>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v6-r4-wrapup'>
-                      <HideSmall>v</HideSmall>0.6 round 4
-                    </Link>
-                  </td>
-                  <td>
-                    10/01/<HideSmall>20</HideSmall>21
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/orden_gg'>@orden_gg</Link>
-                  </td>
-                </TRow>
-                <TRow>
-                  <td>
-                    <Link to='https://blog.zkga.me/v6-r5-wrapup'>
-                      <HideSmall>v</HideSmall>0.6 round 5
-                    </Link>
-                  </td>
-                  <td>
-                    02/18/<HideSmall>20</HideSmall>22
-                  </td>
-                  <td>
-                    <Link to='https://twitter.com/d_fdao'>@d_fdao</Link>
-                    {' + '}
-                    <Link to='https://twitter.com/orden_gg'>@orden_gg</Link>
-                  </td>
-                </TRow>
-              </tbody>
-            </table>
-          </HallOfFame>
-          <Spacer height={32} />
-          <EmailWrapper>
-            <EmailCTA mode={EmailCTAMode.SUBSCRIBE} />
-          </EmailWrapper>
-          */}
         </MainContentContainer>
-
-        {/* // Disable showing leaderboard as it doesn't show
-        <Spacer height={128} />
-        <LeadboardDisplay />
-        <Spacer height={256} />
-        */}
-
       </Page>
     </>
   );
 }
+
+const HeroSection = styled.div`
+  position: relative;
+  top: -4rem;
+`;
+
+const TitleSection = styled.div`
+  font-family: "PressStart2P", Inconsolata, monospace;
+  filter: brightness(120%)
+`;
 
 const LinkContainerLeftFixed = styled.div`
   width: 260px;
@@ -357,8 +187,8 @@ const LinkContainerRight = styled.div`
 const PrettyOverlayGradient = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to left top, rgba(74, 74, 74, 0.628), rgba(60, 1, 255, 0.2)) fixed;
-  background-position: 50%, 50%;
+  background: url("/img/background.png") no-repeat center fixed;
+  background-size: cover;
   display: inline-block;
   position: fixed;
   top: 0;
@@ -494,14 +324,18 @@ function HiringDarkForest() {
 }
 
 const HideOnMobile = styled.div`
-  @media only screen and (max-device-width: 1000px) {
-    display: none;
+  @media only screen and (max-width: 800px) {
+    div {
+      display: none;
+    }
   }
 `;
 
 const OnlyMobile = styled.div`
-  @media only screen and (min-device-width: 1000px) {
-    display: none;
+  @media only screen and (min-width: 800px) {
+    div {
+      display: none;
+    }
   }
 `;
 
