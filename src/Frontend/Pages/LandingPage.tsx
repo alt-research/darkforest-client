@@ -51,10 +51,11 @@ const ButtonWrapper = styled.div`
 
   --df-button-color: ${dfstyles.colors.alpurple};
   --df-button-background: #000;
-  --df-button-border: 1px solid ${dfstyles.colors.alpurple};
+  --df-button-border: 2px solid ${dfstyles.colors.alpurple};
   --df-button-hover-background: ${dfstyles.colors.alpurple};
   --df-button-hover-border: 1px solid ${dfstyles.colors.alpurple};
-  filter: brightness(1.2);
+  text-shadow: 0px 0px 1px ${dfstyles.colors.alpurple};
+  filter: brightness(1.4);
   font-weight: 600;
 `;
 
@@ -68,20 +69,20 @@ export default function LandingPage() {
       {/*<HiringDarkForest />*/}
 
       <Page>
-        <OnlyMobile>
-          <Spacer height={8} />
-        </OnlyMobile>
-        <HideOnMobile>
-          <Spacer height={150} />
-        </HideOnMobile>
-
-        <MainContentContainer>
-          <Header>
-            <LinkContainer>
-              <LinkContainerLeftFixed>
-                AltLayer:
-              </LinkContainerLeftFixed>
-              <LinkContainerRight>
+        {
+          /*<OnlyMobile>
+            <Spacer height={8} />
+          </OnlyMobile>
+          <HideOnMobile>
+            <Spacer height={150} />
+          </HideOnMobile>*/
+        }
+        <OuterWrapper>
+          <LinkContainer>
+            <LinkContainerLeftSpacing/>
+            <LinkContainerRightSide>
+              <LinkInnerContainer>
+                <Text style={{marginRight: ".5em"}}>AltLayer</Text>
                 <a className={'link-twitter'} href={altLayerLinks.twitter}>
                   <span className={'icon-twitter'}></span>
                 </a>
@@ -93,16 +94,15 @@ export default function LandingPage() {
                 <a className={'link-github'} href={altLayerLinks.github}>
                   <span className={'icon-github'}></span>
                 </a>
-                <Link to={altLayerLinks.blog}>blog</Link>
+                <Link to={altLayerLinks.blog}>Blog</Link>
                 <Spacer width={4} />
-                <Link to={altLayerLinks.privacy}>privacy</Link>
-              </LinkContainerRight>
-            </LinkContainer>
-            <LinkContainer>
-              <LinkContainerLeftFixed>
-                Dark Forest:
-              </LinkContainerLeftFixed>
-              <LinkContainerRight>
+                <Link to={altLayerLinks.privacy}>Privacy</Link>
+              </LinkInnerContainer>
+
+              <EmSpacer width={2}/>
+
+              <LinkInnerContainer>
+                <Text style={{marginRight: ".5em"}}>Dark Forest</Text>
                 <a className={'link-twitter'} href={links.twitter}>
                   <span className={'icon-twitter'}></span>
                 </a>
@@ -114,50 +114,48 @@ export default function LandingPage() {
                 <a className={'link-github'} href={links.github}>
                   <span className={'icon-github'}></span>
                 </a>
-                <Link to={links.blog}>blog</Link>
+                <Link to={links.blog}>Blog</Link>
                 <Spacer width={4} />
-                <Link to={links.email}>email</Link>
+                <Link to={links.email}>Email</Link>
                 <Spacer width={4} />
-                <Link to={links.plugins}>plugins</Link>
+                <Link to={links.plugins}>Plugins</Link>
                 <Spacer width={4} />
-                <Link to={links.wiki}>wiki</Link>
-              </LinkContainerRight>
-            </LinkContainer>
+                <Link to={links.wiki}>Wiki</Link>
+              </LinkInnerContainer>
+            </LinkContainerRightSide>
+          </LinkContainer>
 
-            <OnlyMobile>
-              <Spacer height={4} />
-            </OnlyMobile>
-            <HideOnMobile>
-              <Spacer height={16} />
-            </HideOnMobile>
+          <EmSpacer height={3}/>
 
-            <LandingPageRoundArt />
+          <MainContentContainer>
+            <TextCentered>
+              <LandingPageRoundArt />
+              <HeroSection>
+                <TitleSection>
+                  <ALPurple><Larger>Dark Forest on AltLayer<br/>Community Round 1</Larger></ALPurple><br/>
+                  <Spacer height={10} />
+                  <ALPurple><Smaller_2>Sep 9th 12:00 - Sep 11th 12:00 (GMT), 2022</Smaller_2></ALPurple>
+                </TitleSection>
 
-            <HeroSection>
-              <TitleSection>
-                <ALPurple><Larger>Dark Forest on AltLayer<br/>Community Round 1</Larger></ALPurple><br/>
-                <Spacer height={10} />
-                <ALPurple><Smaller_2>Sep 9th 12:00 - Sep 11th 12:00 (GMT), 2022</Smaller_2></ALPurple>
-              </TitleSection>
+                <Spacer height={40} />
 
-              <Spacer height={40} />
-
-              <ButtonWrapper>
-                {/*
-                  // Disallow creating custom lobby
-                  <Btn size='large' onClick={() => history.push(`/lobby/${defaultAddress}`)}>
-                    Create Lobby
+                <ButtonWrapper>
+                  {/*
+                    // Disallow creating custom lobby
+                    <Btn size='large' onClick={() => history.push(`/lobby/${defaultAddress}`)}>
+                      Create Lobby
+                    </Btn>
+                  */}
+                  <Btn size='large' onClick={() => history.push(`/play/${defaultAddress}`)}>
+                    Enter Community Round
                   </Btn>
-                */}
-                <Btn size='large' onClick={() => history.push(`/play/${defaultAddress}`)}>
-                  Enter Community Round
-                </Btn>
-              </ButtonWrapper>
-            </HeroSection>
+                </ButtonWrapper>
+              </HeroSection>
 
-          </Header>
-          <EmSpacer height={3} />
-        </MainContentContainer>
+            </TextCentered>
+            <EmSpacer height={3} />
+          </MainContentContainer>
+        </OuterWrapper>
       </Page>
     </>
   );
@@ -173,14 +171,64 @@ const TitleSection = styled.div`
   filter: brightness(120%)
 `;
 
+export const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  height: 70pt;
+  font-size: 80%;
+  text-shadow: 0 0 1px white;
+
+  a {
+    margin: 0 6pt;
+    transition: color 0.2s;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      &.link-twitter {
+        color: ${dfstyles.colors.icons.twitter};
+      }
+      &.link-github {
+        color: ${dfstyles.colors.icons.github};
+      }
+      &.link-discord {
+        color: ${dfstyles.colors.icons.discord};
+      }
+      &.link-blog {
+        color: ${dfstyles.colors.icons.blog};
+      }
+      &.link-email {
+        color: ${dfstyles.colors.icons.email};
+      }
+    }
+  }
+`;
+const LinkContainerLeftSpacing = styled.div`
+  display: flex;
+  flex-grow: 1;
+`;
+
+const LinkContainerRightSide = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2em;
+`;
+
 const LinkContainerLeftFixed = styled.div`
-  width: 260px;
+  width: 160px;
   text-align: right;
 `;
 
-const LinkContainerRight = styled.div`
+const LinkInnerContainer = styled.div`
   display: flex;
-  flex-grow: 1;
   flex-direction: row
 `;
 
@@ -196,7 +244,7 @@ const PrettyOverlayGradient = styled.div`
   z-index: -1;
 `;
 
-const Header = styled.div`
+const TextCentered = styled.div`
   text-align: center;
 `;
 
@@ -216,6 +264,14 @@ const TRow = styled.tr`
     text-align: right;
     padding-left: 16pt;
   }
+`;
+
+const OuterWrapper= styled.div`
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const MainContentContainer = styled.div`
@@ -244,39 +300,6 @@ const HallOfFameTitle = styled.div`
   display: inline-block;
   border-bottom: 1px solid ${dfstyles.colors.subtext};
   line-height: 1em;
-`;
-
-export const LinkContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  a {
-    margin: 0 6pt;
-    transition: color 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      cursor: pointer;
-      &.link-twitter {
-        color: ${dfstyles.colors.icons.twitter};
-      }
-      &.link-github {
-        color: ${dfstyles.colors.icons.github};
-      }
-      &.link-discord {
-        color: ${dfstyles.colors.icons.discord};
-      }
-      &.link-blog {
-        color: ${dfstyles.colors.icons.blog};
-      }
-      &.link-email {
-        color: ${dfstyles.colors.icons.email};
-      }
-    }
-  }
 `;
 
 function HiringAltLayer() {
