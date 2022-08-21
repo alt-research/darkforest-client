@@ -79,7 +79,9 @@ export default function LandingPage() {
         }
         <OuterWrapper>
           <LinkContainer>
-            <LinkContainerLeftSpacing/>
+
+            <HideOnMobile><LinkContainerLeftSpacing/></HideOnMobile>
+
             <LinkContainerRightSide>
               <LinkInnerContainer>
                 <Text style={{marginRight: ".5em"}}>AltLayer</Text>
@@ -99,7 +101,7 @@ export default function LandingPage() {
                 <Link to={altLayerLinks.privacy}>Privacy</Link>
               </LinkInnerContainer>
 
-              <EmSpacer width={2}/>
+              <HideOnMobile><EmSpacer width={2}/></HideOnMobile>
 
               <LinkInnerContainer>
                 <Text style={{marginRight: ".5em"}}>Dark Forest</Text>
@@ -125,7 +127,7 @@ export default function LandingPage() {
             </LinkContainerRightSide>
           </LinkContainer>
 
-          <EmSpacer height={3}/>
+          <EmSpacer height={2}/>
 
           <MainContentContainer>
             <TextCentered>
@@ -151,9 +153,7 @@ export default function LandingPage() {
                   </Btn>
                 </ButtonWrapper>
               </HeroSection>
-
             </TextCentered>
-            <EmSpacer height={3} />
           </MainContentContainer>
         </OuterWrapper>
       </Page>
@@ -220,16 +220,18 @@ const LinkContainerRightSide = styled.div`
   flex-direction: row;
   align-items: center;
   margin-right: 2em;
-`;
+  height: 100%;
 
-const LinkContainerLeftFixed = styled.div`
-  width: 160px;
-  text-align: right;
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
 `;
 
 const LinkInnerContainer = styled.div`
   display: flex;
-  flex-direction: row
+  flex-direction: row;
 `;
 
 const PrettyOverlayGradient = styled.div`
@@ -347,7 +349,7 @@ function HiringDarkForest() {
 }
 
 const HideOnMobile = styled.div`
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 900px) {
     div {
       display: none;
     }
@@ -355,7 +357,7 @@ const HideOnMobile = styled.div`
 `;
 
 const OnlyMobile = styled.div`
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: 900px) {
     div {
       display: none;
     }
