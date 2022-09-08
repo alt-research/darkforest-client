@@ -153,7 +153,7 @@ export default function LandingPage() {
 
                 <ButtonWrapper>
                   <Btn size='large' onClick={() => history.push(`/play/${defaultAddress}`)}>
-                    <FixedWidthBtn>Enter Warm-up Round 🚀</FixedWidthBtn>
+                    <FixedWidthBtn>Enter Community Round 1 🚀</FixedWidthBtn>
                   </Btn>
                 </ButtonWrapper>
               </HeroSection>
