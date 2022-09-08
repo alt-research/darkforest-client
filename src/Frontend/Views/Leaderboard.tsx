@@ -15,30 +15,32 @@ import { Table } from './Table';
 
 // Refresh every 10s
 const SCORE_REFRESH_RATE = 10000
-
-const AL_SERVER_URL = window.location.href.includes('localhost')
-  ? 'http://localhost:3011'
-  : 'https://darkforest-leaderboard.altresearch.xyz'
+const roundStartTime = new Date(process.env.ROUND_START_TIMESTAMP as string).getTime()
+const roundEndTime = new Date(process.env.ROUND_END_TIMESTAMP as string).getTime()
 
 export function LeadboardDisplay() {
   const [leaderboard, setLeaderboard] = useState()
   const [error, setError] = useState()
+  const gameBegin = (new Date().getTime() - roundStartTime >= 0)
 
   useEffect(() => {
     let jobId: number | undefined = undefined
 
     const fetchScores = async() => {
       try {
-        const resp = await fetch(`${AL_SERVER_URL}/leaderboard`)
-        setLeaderboard(await resp.json())
+        const resp = await fetch(`${process.env.AL_SERVER_URL}/leaderboard`)
+        const res = await resp.json()
+        setLeaderboard(res)
       } catch (err) {
         setError(err)
       }
     }
 
-    fetchScores().then(() => {
-      jobId = window.setInterval(fetchScores, SCORE_REFRESH_RATE)
-    })
+    if (gameBegin) {
+      fetchScores().then(() => {
+        jobId = window.setInterval(fetchScores, SCORE_REFRESH_RATE)
+      })
+    }
 
     return (() => {
       jobId && clearInterval(jobId)
@@ -47,13 +49,13 @@ export function LeadboardDisplay() {
 
   const errorMessage = 'Error Loading Leaderboard';
 
-  return (
-    <GenericErrorBoundary errorMessage={errorMessage}>
-      {!leaderboard && !error && <LoadingSpinner initialText={'Loading Leaderboard...'} />}
-      {leaderboard && <LeaderboardBody leaderboard={leaderboard} />}
-      {error && <Red>{errorMessage}</Red>}
-    </GenericErrorBoundary>
-  );
+  return gameBegin
+    ? <GenericErrorBoundary errorMessage={errorMessage}>
+        {!leaderboard && !error && <LoadingSpinner initialText={'Loading Leaderboard...'} />}
+        {leaderboard && <LeaderboardBody leaderboard={leaderboard} />}
+        {error && <Red>{errorMessage}</Red>}
+      </GenericErrorBoundary>
+    : <></>
 }
 
 function scoreToString(score?: number | null) {
@@ -137,10 +139,6 @@ function LeaderboardTable({ rows }: { rows: Array<[string, number | undefined]> 
   };
 }
 
-// TODO: update this each round, or pull from contract constants
-const roundEndTimestamp = '2022-09-11T12:00:00.000Z';
-const roundEndTime = new Date(roundEndTimestamp).getTime();
-
 function CountDown() {
   const [str, setStr] = useState('');
 
@@ -191,28 +189,26 @@ function LeaderboardBody({ leaderboard }: { leaderboard: Leaderboard }) {
     return [entry.ethAddress, entry.score];
   });
 
-  return (
-    <div>
-      <StatsTableContainer>
-        <StatsTable>
-          <tbody>
-            <tr>
-              <td>Round ends in</td>
-              <td>
-                <CountDown />
-              </td>
-            </tr>
-            <tr>
-              <td>Ranked players</td>
-              <td>{rankedPlayers.length}</td>
-            </tr>
-          </tbody>
-        </StatsTable>
-      </StatsTableContainer>
-      <Spacer height={8} />
-      <LeaderboardTable rows={rows} />
-    </div>
-  );
+  return <div>
+    <StatsTableContainer>
+      <StatsTable>
+        <tbody>
+          <tr>
+            <td>Round ends in</td>
+            <td>
+              <CountDown />
+            </td>
+          </tr>
+          <tr>
+            <td>Ranked players</td>
+            <td>{rankedPlayers.length}</td>
+          </tr>
+        </tbody>
+      </StatsTable>
+    </StatsTableContainer>
+    <Spacer height={8} />
+    <LeaderboardTable rows={rows} />
+  </div>
 }
 
 const Cell = styled.div`
