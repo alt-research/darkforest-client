@@ -66,6 +66,15 @@ const ButtonWrapper = styled.div`
 export default function LandingPage() {
   const history = useHistory();
 
+  const gameStart = new Date(process.env.ROUND_START_TIMESTAMP as string).getTime()
+  const gameEnd = new Date(process.env.ROUND_END_TIMESTAMP as string).getTime()
+  const current = new Date().getTime()
+  const gameProgress = current < gameStart
+    ? -1 // game not started yet
+    : gameEnd < current
+      ? 1 // game ended already
+      : 0 // game in progress
+
   return (
     <>
       <PrettyOverlayGradient />
@@ -152,8 +161,17 @@ export default function LandingPage() {
                 <Spacer height={40} />
 
                 <ButtonWrapper>
-                  <Btn size='large' onClick={() => history.push(`/play/${defaultAddress}`)}>
-                    <FixedWidthBtn>Enter Community Round 1 🚀</FixedWidthBtn>
+                  <Btn
+                    size='large'
+                    disabled={ gameProgress !== 0 }
+                    onClick={() => history.push(`/play/${defaultAddress}`)}
+                  >
+                    <FixedWidthBtnStyle>{ gameProgress < 0
+                      ? "Community Round Pending to Start"
+                      : gameProgress > 0
+                        ? "Community Round has Ended"
+                        : "Enter Community Round 🚀"
+                    }</FixedWidthBtnStyle>
                   </Btn>
                 </ButtonWrapper>
               </HeroSection>
@@ -176,7 +194,7 @@ const TitleSection = styled.div`
   filter: brightness(120%)
 `;
 
-const FixedWidthBtn = styled.div`
+const FixedWidthBtnStyle = styled.div`
   font-size: 18px;
   max-width: 100%;
   display: block;
