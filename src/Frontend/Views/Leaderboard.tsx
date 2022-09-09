@@ -36,11 +36,9 @@ export function LeadboardDisplay() {
       }
     }
 
-    if (gameBegin) {
-      fetchScores().then(() => {
-        jobId = window.setInterval(fetchScores, SCORE_REFRESH_RATE)
-      })
-    }
+    fetchScores().then(() => {
+      jobId = window.setInterval(fetchScores, SCORE_REFRESH_RATE)
+    })
 
     return (() => {
       jobId && clearInterval(jobId)
