@@ -33,6 +33,7 @@ export function LeadboardDisplay() {
         setLeaderboard(res)
       } catch (err) {
         setError(err)
+        console.log("Error Loading Leaderboard");
       }
     }
 
@@ -51,7 +52,6 @@ export function LeadboardDisplay() {
     ? <GenericErrorBoundary errorMessage={errorMessage}>
         {!leaderboard && !error && <LoadingSpinner initialText={'Loading Leaderboard...'} />}
         {leaderboard && <LeaderboardBody leaderboard={leaderboard} />}
-        {error && <Red>{errorMessage}</Red>}
       </GenericErrorBoundary>
     : <></>
 }
