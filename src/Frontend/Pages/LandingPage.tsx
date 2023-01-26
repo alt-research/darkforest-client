@@ -153,8 +153,6 @@ export default function LandingPage() {
                   <ALPurple>
                     <Larger>Dark Forest on AltLayer</Larger><br/>
                     <Spacer height={18} />
-                    <span>Community Round 1</span><br/>
-                    <Smaller_2>Sep 9th 12:00 - Sep 11th 12:00 (GMT), 2022</Smaller_2>
                   </ALPurple>
                 </TitleSection>
 
