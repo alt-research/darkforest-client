@@ -51,7 +51,7 @@ function formatNumber(num, decimalCount = 1) {
 }
 
 async function downloadLeaderboard() {
-  return fetch(`https://darkforest-leaderboard.altresearch.xyz/leaderboard`)
+  return fetch(`${process.env.AL_SERVER_URL}/leaderboard`)
     .then(response => response.json())
 }
 
