@@ -29,13 +29,12 @@ const links = {
 };
 
 const altLayerLinks = {
-  twitter: 'https://alt.ws/twitter',
-  blog: 'https://blog.altlayer.io/launching-dark-forest-community-gaming-round-e243e116f3d5',
-  preRegister: 'https://gleam.io/o1mPK/altlayer-darkforest-whitelist',
+  twitter: 'https://twitter.com/alt_layer',
+  blog: 'https://blog.altlayer.io/',
   discord: 'https://discord.gg/altlayer',
   github: 'https://github.com/alt-research',
   privacy: 'https://docs.altlayer.io/privacy-policy.html',
-  faucet: 'https://flashlayer-1-faucet.altlayer.io/',
+  faucet: 'https://devnet-faucet.altlayer.io/',
   tnc: 'https://docs.altlayer.io/AltLayer-Darkforest-Campaign-Terms-and-Conditions.html',
 }
 
@@ -118,7 +117,7 @@ export default function LandingPage() {
               </LinkInnerContainer>
 
               <HideOnMobile><EmSpacer width={2}/></HideOnMobile>
-
+              
               <LinkInnerContainer>
                 <Text style={{marginRight: ".5em"}}>Dark Forest</Text>
                 <a className={'link-twitter'} href={links.twitter}>
@@ -134,8 +133,8 @@ export default function LandingPage() {
                 </a>
                 <Link to={links.blog}>Blog</Link>
                 <Spacer width={2} />
-                <Link to={links.email}>Email</Link>
-                <Spacer width={2} />
+                {/* <Link to={links.email}>Email</Link> */}
+                {/* <Spacer width={2} /> */}
                 <Link to={links.plugins}>Plugins</Link>
                 <Spacer width={2} />
                 <Link to={links.wiki}>Wiki</Link>
@@ -149,14 +148,14 @@ export default function LandingPage() {
             <TextCentered>
               <LandingPageRoundArt />
               <HeroSection>
-                <TitleSection>
+                {/* <TitleSection>
                   <ALPurple>
                     <Larger>Dark Forest on AltLayer</Larger><br/>
                     <Spacer height={18} />
                   </ALPurple>
-                </TitleSection>
+                </TitleSection> */}
 
-                <Spacer height={40} />
+                <Spacer height={100} />
 
                 <ButtonWrapper>
                   <Btn
