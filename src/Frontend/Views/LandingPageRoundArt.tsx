@@ -7,7 +7,7 @@ export function LandingPageRoundArt() {
   return (
     <Container>
       <ImgContainer>
-        <LandingPageRoundArtImg src={'/public/round_art/altlayer-round2.jpg'} />
+        <LandingPageRoundArtImg src={'/public/round_art/altlayer-round1.png'} />
       </ImgContainer>
     </Container>
   );
@@ -22,7 +22,7 @@ const Container = styled.div`
 const ImgContainer = styled.div`
   display: inline-block;
   text-align: right;
-  width: 1400px;
+  width: 700px;
   max-width: 80vw;
 
   @media only screen and (max-device-width: 1000px) {
